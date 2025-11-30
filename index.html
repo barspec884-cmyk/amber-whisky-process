@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ウイスキー製造工程（詳細）</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+            padding: 16px;
+            background-color: #f4f4f4;
+        }
+
+        /* PCでもスマホでも幅いっぱいに広がる */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #6a0000;
+            border-bottom: 3px solid #6a0000;
+            padding-bottom: 10px;
+            font-size: 1.6rem;
+        }
+
+        h2 {
+            color: #8B4513;
+            border-left: 5px solid #8B4513;
+            padding-left: 10px;
+            margin-top: 32px;
+            font-size: 1.35rem;
+        }
+
+        h3 {
+            color: #444;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 20px;
+        }
+
+        .step {
+            background-color: #fff;
+            padding: 18px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 32px;
+        }
+
+        .step p {
+            margin-bottom: 12px;
+            font-size: 1rem;
+        }
+
+        .step ul li {
+            margin-bottom: 6px;
+            font-size: 1rem;
+        }
+
+        /* テーブルをスマホで横スクロール可能に */
+        .table-wrapper {
+            overflow-x: auto;
+            margin-top: 16px;
+            margin-bottom: 16px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        table {
+            width: 100%;
+            min-width: 600px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        th {
+            background-color: #f0f0f0;
+            color: #6a0000;
+        }
+
+        /* モバイル向け微調整 */
+        @media (max-width: 600px) {
+            body {
+                padding: 12px;
+            }
+
+            h1 {
+                font-size: 1.4rem;
+            }
+
+            h2 {
+                font-size: 1.25rem;
+            }
+
+            h3 {
+                font-size: 1.05rem;
+            }
+
+            .step {
+                padding: 14px;
+            }
+
+            th, td {
+                font-size: 0.9rem;
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>🥃 ウイスキー製造のコア工程流れ&nbsp;</h1>
+
+<!-- 元ファイルの本文（1文字も削除しない） -->
+
+<div class="step">
+    <h2>1. 🌿 原料調達と製麦（Malting: モルティング）</h2>
+    <p>ウイスキーの基盤となる工程です。</p>
+    <ul>
+      <li><strong>原料</strong>: <strong>二条大麦（Barley）</strong>が主に使用されます。</li>
+        <li><strong>製麦</strong>: 大麦を水に浸して発芽を促し、<strong>酵素</strong>を活性化させます。この酵素ができた麦芽（<strong>Malt</strong>）を乾燥させます。</li>
+        <li><strong>乾燥と着香</strong>: 乾燥には<strong>キルン（Kiln）</strong>を用います。燃料に<strong>ピート（Peat: 泥炭）</strong>を焚くことで、麦芽に独特の<strong>スモーキーフレーバー</strong>が付与されます。</li>
+    </ul>
+</div>
+
+<div class="step">
+    <h2>2. 🍞 仕込み（Mashing: マッシング）— 粉砕の3要素</h2>
+    <p>麦芽のデンプンを熱湯の力で糖に変える、最も重要な化学工程です。</p>
+
+    <h3>粉砕（Milling）— グリスト（Grist）の構成</h3>
+    <p>粉砕機で砕かれた麦芽は、濾過と糖化の効率を高めるため、以下の3種類の粒度に分けられます。これらをまとめて<strong>グリスト（Grist）</strong>と呼びます。</p>
+
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>種類 (日本語)</th>
+                    <th>英語名</th>
+                    <th>役割・特徴</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>**ハスク**</td>
+                    <td>**Husk**</td>
+                    <td>一番粗い外皮。糖化槽で濾過層の役割を担い、麦汁の流れを確保します。</td>
+                </tr>
+                <tr>
+                    <td>**グリッツ**</td>
+                    <td>**Grits**</td>
+                    <td>中間の大きさ。デンプンが最も多く含まれる部分で、糖化の主役です。</td>
+                </tr>
+                <tr>
+                    <td>**フラワー**</td>
+                    <td>**Flour**</td>
+                    <td>一番細かい粉。少量は必要ですが、多すぎると麦汁が詰まりやすくなります。</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>糖化（Mashing）と抽出</h3>
+    <ul>
+        <li><strong>糖化槽</strong>: グリストを<strong>マッシュタン（Mash Tun）</strong>で熱湯と混ぜ（<strong>Mashing</strong>）、デンプンを糖に分解します。</li>
+        <li><strong>麦汁抽出</strong>: 糖分を豊富に含んだ液体（<strong>Wort: 麦汁</strong>）が抽出されます。</li>
+    </ul>
+</div>
+
+<div class="step">
+    <h2>3. 🧪 発酵（Fermentation: ファーメンテーション）</h2>
+    <p>アルコールと、ウイスキーの風味のもとを生み出す工程です。</p>
+    <ul>
+        <li><strong>発酵槽</strong>: 麦汁は<strong>ウォッシュバック（Wash Back）</strong>に移され、<strong>酵母（Yeast）</strong>が加えられます。</li>
+        <li><strong>生成物</strong>: 酵母が糖分をアルコールと二酸化炭素に分解します。発酵完了後のビール状の液体が<strong>ウォッシュ（Wash）</strong>です。</li>
+    </ul>
+</div>
+
+<div class="step">
+    <h2>4. 🔥 蒸留（Distillation: ディスティレーション）— 2度の蒸留とカット</h2>
+    <p>アルコール度数を高め、酒質の個性を決定づける工程です。</p>
+
+    <h3>2度の蒸留工程</h3>
+    <p>モルトウイスキーは、主に以下の2段階で蒸留されます。</p>
+
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>段階</th>
+                    <th>蒸留器</th>
+                    <th>目的と生成物</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>**初留**</td>
+                    <td>**ウォッシュスチル（Wash Still）**</td>
+                    <td>ウォッシュを蒸留し、アルコール度数20〜30%の<strong>ローワイン（Low Wine）</strong>を得ます。</td>
+                </tr>
+                <tr>
+                    <td>**再留**</td>
+                    <td>**スピリットスチル（Spirit Still）**</td>
+                    <td>ローワインを再蒸留し、最終原酒となる<strong>ニューポット</strong>を採取します。</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>重要な採取のタイミング（カットポイント）</h3>
+    <p>再留で出てくる液体は、品質に応じて3つに分けられます。原酒となるのは中央の**ミドルカット**のみです。</p>
+
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>分類</th>
+                    <th>英語名</th>
+                    <th>特徴</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>**ヘッド**</td>
+                    <td>**Head** (Foreshots)</td>
+                    <td>最初に出てくる部分。刺激臭・不純物が強いため、原酒には使いません。</td>
+                </tr>
+                <tr>
+                    <td>**ミドルカット**</td>
+                    <td>**Middle Cut** (Heart Cut)</td>
+                    <td>中央部分。最もクリアで芳醇な、<strong>ウイスキーの原酒</strong>となる部分です。</td>
+                </tr>
+                <tr>
+                    <td>**テール**</td>
+                    <td>**Tail** (Feints)</td>
+                    <td>最後に出てくる部分。重く油分が多く、雑味を含むため原酒には使いません。</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p>採取された透明な高アルコール度の液体を<strong>ニューポット（New Pot）</strong>と呼びます。</p>
+</div>
+
+<div class="step">
+    <h2>5. 🌳 熟成（Maturation: マチュレーション）</h2>
+    <p>ウイスキーの風味と色を形作る、最も時間の長い工程です。</p>
+    <ul>
+      <li><strong>樽（Cask）</strong>: ニューポットをオーク材の樽に詰め、<strong>熟成庫（Warehouse）</strong>で寝かせます。</li>
+        <li><strong>熟成の影響</strong>: 樽材からバニラやスパイス、濃厚なフルーツの香味が抽出され、風味はまろやかになります。</li>
+        <li><strong>天使の分け前</strong>: 熟成中に蒸発して失われる原酒は<strong>エンジェルズ・シェア（Angel's Share）</strong>と呼ばれます。</li>
+    </ul>
+</div>
+
+</div><!-- /container -->
+
+</body>
+</html>
