@@ -1,268 +1,562 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ウイスキー製造工程（詳細）</title>
-
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.8;
-            color: #333;
-            margin: 0;
-            padding: 16px;
-            background-color: #f4f4f4;
-        }
-
-        /* PCでもスマホでも幅いっぱいに広がる */
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        h1 {
-            color: #6a0000;
-            border-bottom: 3px solid #6a0000;
-            padding-bottom: 10px;
-            font-size: 1.6rem;
-        }
-
-        h2 {
-            color: #8B4513;
-            border-left: 5px solid #8B4513;
-            padding-left: 10px;
-            margin-top: 32px;
-            font-size: 1.35rem;
-        }
-
-        h3 {
-            color: #444;
-            font-weight: bold;
-            font-size: 1.1rem;
-            margin-top: 20px;
-        }
-
-        .step {
-            background-color: #fff;
-            padding: 18px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            margin-bottom: 32px;
-        }
-
-        .step p {
-            margin-bottom: 12px;
-            font-size: 1rem;
-        }
-
-        .step ul li {
-            margin-bottom: 6px;
-            font-size: 1rem;
-        }
-
-        /* テーブルをスマホで横スクロール可能に */
-        .table-wrapper {
-            overflow-x: auto;
-            margin-top: 16px;
-            margin-bottom: 16px;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        table {
-            width: 100%;
-            min-width: 600px;
-            border-collapse: collapse;
-        }
-
-        th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: left;
-            font-size: 0.95rem;
-        }
-
-        th {
-            background-color: #f0f0f0;
-            color: #6a0000;
-        }
-
-        /* モバイル向け微調整 */
-        @media (max-width: 600px) {
-            body {
-                padding: 12px;
-            }
-
-            h1 {
-                font-size: 1.4rem;
-            }
-
-            h2 {
-                font-size: 1.25rem;
-            }
-
-            h3 {
-                font-size: 1.05rem;
-            }
-
-            .step {
-                padding: 14px;
-            }
-
-            th, td {
-                font-size: 0.9rem;
-                padding: 8px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+  <title>ウイスキー製造工程（詳細版）</title>
+  <style>
+    :root{
+      --bg:#f4f4f4;
+      --card:#ffffff;
+      --text:#222;
+      --muted:#666;
+      --accent:#6a0000;
+      --accent2:#8B4513;
+      --line:#e4e4e4;
+      --shadow: 0 6px 16px rgba(0,0,0,.10);
+      --radius: 12px;
+    }
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+      line-height:1.85;
+      color:var(--text);
+      background:var(--bg);
+      -webkit-text-size-adjust:100%;
+    }
+    .container{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 14px 14px 64px;
+    }
+    header{
+      background: linear-gradient(135deg, #7b0b0b, #3d0404);
+      color:#fff;
+      border-radius: var(--radius);
+      padding: 16px 14px;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      margin-bottom: 12px;
+    }
+    header h1{
+      font-size: 1.25rem;
+      margin: 0 0 6px 0;
+      letter-spacing: .02em;
+    }
+    header p{
+      margin:0;
+      font-size: .92rem;
+      color: rgba(255,255,255,.88);
+    }
+    .toc{
+      margin-top: 10px;
+      display:flex;
+      gap:8px;
+      flex-wrap: wrap;
+    }
+    .toc a{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      color:#fff;
+      text-decoration:none;
+      font-size:.86rem;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.18);
+      padding: 6px 10px;
+      border-radius: 999px;
+      transition: transform .08s ease;
+      white-space: nowrap;
+    }
+    .toc a:active{ transform: scale(.98); }
+    .step{
+      background:var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 16px 14px;
+      margin: 14px 0;
+      border: 1px solid rgba(0,0,0,.04);
+    }
+    .step h2{
+      margin: 0 0 10px;
+      font-size: 1.15rem;
+      color: var(--accent2);
+      border-left: 5px solid var(--accent2);
+      padding-left: 10px;
+    }
+    .badge{
+      display:inline-block;
+      font-size:.78rem;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #f7efe7;
+      color: #6b3a11;
+      border: 1px solid #ead8c8;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .meta{
+      margin: 8px 0 12px;
+      display:grid;
+      gap: 8px;
+    }
+    .meta .row{
+      display:flex;
+      gap:10px;
+      flex-wrap: wrap;
+      align-items: baseline;
+      padding: 10px 10px;
+      background: #fafafa;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+    }
+    .k{
+      font-weight: 700;
+      color: #3b3b3b;
+      min-width: 5.8em;
+    }
+    .v{ color: var(--text); }
+    ul{ margin: 8px 0 0 1.2em; }
+    li{ margin: 6px 0; }
+    .note{
+      margin-top: 12px;
+      padding: 12px 12px;
+      border-radius: 10px;
+      background: #fff7e6;
+      border: 1px solid #f2d6a8;
+      color: #5a3c0a;
+    }
+    .note strong{ color:#4a2f05; }
+    .grid2{
+      display:grid;
+      gap:12px;
+      grid-template-columns: 1fr;
+      margin-top: 10px;
+    }
+    .box{
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 12px 12px;
+      background: #fcfcfc;
+    }
+    .box h3{
+      margin:0 0 6px 0;
+      font-size: 1.0rem;
+      color:#444;
+    }
+    .box p{ margin: 0; color: var(--muted); font-size:.95rem; }
+    .table-wrap{
+      overflow-x:auto;
+      -webkit-overflow-scrolling: touch;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      margin-top: 10px;
+      background:#fff;
+    }
+    table{
+      width:100%;
+      min-width: 620px;
+      border-collapse: collapse;
+      font-size: .95rem;
+    }
+    th,td{
+      border-bottom: 1px solid var(--line);
+      padding: 10px 10px;
+      text-align:left;
+      vertical-align: top;
+    }
+    th{
+      background:#f2f2f2;
+      color: var(--accent);
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+    .muted{ color: var(--muted); }
+    footer{
+      margin-top: 22px;
+      color: var(--muted);
+      font-size:.88rem;
+      text-align:center;
+    }
+    @media (min-width: 820px){
+      header{ padding: 18px 18px; }
+      header h1{ font-size: 1.4rem; }
+      .container{ padding: 18px 16px 72px; }
+      .step{ padding: 18px 18px; }
+      .grid2{ grid-template-columns: 1fr 1fr; }
+    }
+    /* 小さな画面でタップしやすく */
+    @media (max-width: 380px){
+      .toc a{ font-size:.82rem; padding: 6px 9px; }
+      .k{ min-width: 4.8em; }
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <header>
+      <h1>🥃 ウイスキー製造工程（詳細版）</h1>
+      <p>精麦 → 糖化 → 発酵 → 蒸留 → 貯蔵 → 熟成 → ヴァッティング → ブレンデッド → 瓶詰め（製品化）</p>
+      <nav class="toc" aria-label="目次">
+        <a href="#s1">1 精麦</a>
+        <a href="#s2">2 糖化</a>
+        <a href="#s3">3 発酵</a>
+        <a href="#s4">4 蒸留</a>
+        <a href="#s5">5 貯蔵</a>
+        <a href="#s6">6 熟成</a>
+        <a href="#s7">7 ヴァッティング</a>
+        <a href="#s8">8 ブレンデッド</a>
+        <a href="#s9">9 瓶詰め</a>
+      </nav>
+    </header>
 
-<div class="container">
+    <!-- 1 -->
+    <section class="step" id="s1">
+      <h2>1. 精麦（Malting）<span class="badge">酵素を“準備”する</span></h2>
+      <div class="meta">
+        <div class="row"><div class="k">目的</div><div class="v">大麦を発芽させ、デンプン分解に必要な<strong>酵素</strong>を活性化した麦芽（モルト）を得る。</div></div>
+        <div class="row"><div class="k">主な生成</div><div class="v"><strong>麦芽（Malt）</strong>／香味の土台（ピート乾燥ならスモーク要素）</div></div>
+      </div>
+      <ul>
+        <li><strong>浸漬（Steeping）</strong>：水分を与え発芽を開始させる。</li>
+        <li><strong>発芽（Germination）</strong>：酵素（例：α/βアミラーゼ）が生成・活性化。</li>
+        <li><strong>乾燥（Kilning）</strong>：発芽を停止し保存性を確保。ピートを焚くとスモーキー香が付与される。</li>
+      </ul>
+      <div class="note"><strong>ポイント：</strong>この段階ではアルコールは発生しない。以後の工程効率と香味の“原点”を決める。</div>
 
-<h1>🥃 ウイスキー製造のコア工程流れ&nbsp;</h1>
+      <div class="grid2">
+        <div class="box">
+          <h3>攪拌（Turning / Agitation）</h3>
+          <p>発芽中の麦を定期的に<strong>攪拌</strong>し、温度と水分を均一化。根が絡むのを防ぎ、過剰発芽や局所的な発熱を抑える。</p>
+          <p class="muted">頻度や強度は麦の状態・室温で調整され、酵素活性と香味のクリーンさに影響。</p>
+        </div>
+        <div class="box">
+          <h3>フロアモルティング（Floor Malting）</h3>
+          <p>床に広げた大麦を人手で管理する伝統製法。<strong>少量・高管理</strong>が可能で、蒸留所固有の個性を付与しやすい。</p>
+          <p class="muted">人手とスペースを要するため稀少。近代製麦との併用例も多い。</p>
+        </div>
+      </div>
 
-<!-- 元ファイルの本文（1文字も削除しない） -->
-
-<div class="step">
-    <h2>1. 🌿 原料調達と製麦（Malting: モルティング）</h2>
-    <p>ウイスキーの基盤となる工程です。</p>
-    <ul>
-      <li><strong>原料</strong>: <strong>二条大麦（Barley）</strong>が主に使用されます。</li>
-        <li><strong>製麦</strong>: 大麦を水に浸して発芽を促し、<strong>酵素</strong>を活性化させます。この酵素ができた麦芽（<strong>Malt</strong>）を乾燥させます。</li>
-        <li><strong>乾燥と着香</strong>: 乾燥には<strong>キルン（Kiln）</strong>を用います。燃料に<strong>ピート（Peat: 泥炭）</strong>を焚くことで、麦芽に独特の<strong>スモーキーフレーバー</strong>が付与されます。</li>
-    </ul>
-</div>
-
-<div class="step">
-    <h2>2. 🍞 仕込み（Mashing: マッシング）— 粉砕の3要素</h2>
-    <p>麦芽のデンプンを熱湯の力で糖に変える、最も重要な化学工程です。</p>
-
-    <h3>粉砕（Milling）— グリスト（Grist）の構成</h3>
-    <p>粉砕機で砕かれた麦芽は、濾過と糖化の効率を高めるため、以下の3種類の粒度に分けられます。これらをまとめて<strong>グリスト（Grist）</strong>と呼びます。</p>
-
-    <div class="table-wrapper">
+      <div class="table-wrap" role="region" aria-label="製麦方式の比較">
         <table>
-            <thead>
-                <tr>
-                    <th>種類 (日本語)</th>
-                    <th>英語名</th>
-                    <th>役割・特徴</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>**ハスク**</td>
-                    <td>**Husk**</td>
-                    <td>一番粗い外皮。糖化槽で濾過層の役割を担い、麦汁の流れを確保します。</td>
-                </tr>
-                <tr>
-                    <td>**グリッツ**</td>
-                    <td>**Grits**</td>
-                    <td>中間の大きさ。デンプンが最も多く含まれる部分で、糖化の主役です。</td>
-                </tr>
-                <tr>
-                    <td>**フラワー**</td>
-                    <td>**Flour**</td>
-                    <td>一番細かい粉。少量は必要ですが、多すぎると麦汁が詰まりやすくなります。</td>
-                </tr>
-            </tbody>
+          <thead>
+            <tr>
+              <th>方式</th>
+              <th>管理方法</th>
+              <th>特徴</th>
+              <th>代表的な利点</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>フロアモルティング</td>
+              <td>人手攪拌</td>
+              <td>少量・高い介入度</td>
+              <td>蒸留所個性、酵素発現の微調整</td>
+            </tr>
+            <tr>
+              <td>近代製麦（ドラム等）</td>
+              <td>機械制御</td>
+              <td>大量・均質</td>
+              <td>再現性、効率、コスト安定</td>
+            </tr>
+          </tbody>
         </table>
-    </div>
+      </div>
 
-    <h3>糖化（Mashing）と抽出</h3>
-    <ul>
-        <li><strong>糖化槽</strong>: グリストを<strong>マッシュタン（Mash Tun）</strong>で熱湯と混ぜ（<strong>Mashing</strong>）、デンプンを糖に分解します。</li>
-        <li><strong>麦汁抽出</strong>: 糖分を豊富に含んだ液体（<strong>Wort: 麦汁</strong>）が抽出されます。</li>
-    </ul>
-</div>
+    </section>
 
-<div class="step">
-    <h2>3. 🧪 発酵（Fermentation: ファーメンテーション）</h2>
-    <p>アルコールと、ウイスキーの風味のもとを生み出す工程です。</p>
-    <ul>
-        <li><strong>発酵槽</strong>: 麦汁は<strong>ウォッシュバック（Wash Back）</strong>に移され、<strong>酵母（Yeast）</strong>が加えられます。</li>
-        <li><strong>生成物</strong>: 酵母が糖分をアルコールと二酸化炭素に分解します。発酵完了後のビール状の液体が<strong>ウォッシュ（Wash）</strong>です。</li>
-    </ul>
-</div>
+    <!-- 2 -->
+    <section class="step" id="s2">
+      <h2>2. 糖化（Mashing）<span class="badge">デンプン→糖</span></h2>
+      <div class="meta">
+        <div class="row"><div class="k">目的</div><div class="v">麦芽のデンプンを、酵素の作用で<strong>発酵可能な糖</strong>へ変換する。</div></div>
+        <div class="row"><div class="k">主な生成</div><div class="v"><strong>麦汁（Wort）</strong>：糖分を含む液体</div></div>
+      </div>
 
-<div class="step">
-    <h2>4. 🔥 蒸留（Distillation: ディスティレーション）— 2度の蒸留とカット</h2>
-    <p>アルコール度数を高め、酒質の個性を決定づける工程です。</p>
+      <div class="grid2">
+        <div class="box">
+          <h3>粉砕（Milling）</h3>
+          <p>麦芽を砕き、濾過と糖化効率を両立する粒度バランス（グリスト）を作る。</p>
+        </div>
+        <div class="box">
+          <h3>糖化槽（Mash Tun）</h3>
+          <p>温水と混合し、温度帯と回数で抽出効率・ボディ感が変化する。</p>
+        </div>
+      </div>
 
-    <h3>2度の蒸留工程</h3>
-    <p>モルトウイスキーは、主に以下の2段階で蒸留されます。</p>
-
-    <div class="table-wrapper">
+      <div class="table-wrap" role="region" aria-label="グリスト構成表">
         <table>
-            <thead>
-                <tr>
-                    <th>段階</th>
-                    <th>蒸留器</th>
-                    <th>目的と生成物</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>**初留**</td>
-                    <td>**ウォッシュスチル（Wash Still）**</td>
-                    <td>ウォッシュを蒸留し、アルコール度数20〜30%の<strong>ローワイン（Low Wine）</strong>を得ます。</td>
-                </tr>
-                <tr>
-                    <td>**再留**</td>
-                    <td>**スピリットスチル（Spirit Still）**</td>
-                    <td>ローワインを再蒸留し、最終原酒となる<strong>ニューポット</strong>を採取します。</td>
-                </tr>
-            </tbody>
+          <thead>
+            <tr>
+              <th>構成</th>
+              <th>英語</th>
+              <th>役割</th>
+              <th>注意点</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>ハスク</td>
+              <td>Husk</td>
+              <td>濾過層を形成し、麦汁の流れを確保。</td>
+              <td>少なすぎると詰まりやすい。</td>
+            </tr>
+            <tr>
+              <td>グリッツ</td>
+              <td>Grits</td>
+              <td>糖源の中心。デンプンが多い部分。</td>
+              <td>粗すぎると抽出不足。</td>
+            </tr>
+            <tr>
+              <td>フラワー</td>
+              <td>Flour</td>
+              <td>反応面積を増やし糖化を助ける。</td>
+              <td>多すぎると濾過が詰まりやすい。</td>
+            </tr>
+          </tbody>
         </table>
-    </div>
+      </div>
 
-    <h3>重要な採取のタイミング（カットポイント）</h3>
-    <p>再留で出てくる液体は、品質に応じて3つに分けられます。原酒となるのは中央の**ミドルカット**のみです。</p>
+      <div class="note"><strong>ポイント：</strong>糖化は“化学工程”。温度・攪拌・回数の設計で酒質の骨格が変わる。</div>
+    </section>
 
-    <div class="table-wrapper">
+    <!-- 3 -->
+    <section class="step" id="s3">
+      <h2>3. 発酵（Fermentation）<span class="badge">香りの母体</span></h2>
+      <div class="meta">
+        <div class="row"><div class="k">目的</div><div class="v">酵母により糖を<strong>アルコール</strong>と香味成分（エステル等）へ変換する。</div></div>
+        <div class="row"><div class="k">主な生成</div><div class="v"><strong>ウォッシュ（Wash）</strong>：ビール状（概ね6–9%）</div></div>
+      </div>
+      <ul>
+        <li><strong>ウォッシュバック</strong>へ麦汁を移送し、酵母を投入。</li>
+        <li>発酵時間（例：48–120時間）で、フルーティ／乳酸系／溶剤様など香味バランスが変化。</li>
+      </ul>
+      <div class="note"><strong>ポイント：</strong>蒸留前に、香味の“素材”がどれだけできているかが品質の上限を決める。</div>
+    </section>
+
+    <!-- 4 -->
+    <section class="step" id="s4">
+      <h2>4. 蒸留（Distillation）<span class="badge">選別（カット）</span></h2>
+      <div class="meta">
+        <div class="row"><div class="k">目的</div><div class="v">アルコールを濃縮し、目的の香味帯を<strong>採取（カット）</strong>して酒質を形成する。</div></div>
+        <div class="row"><div class="k">主な生成</div><div class="v"><strong>ニューポット（New Make）</strong>：無色透明の原酒</div></div>
+      </div>
+
+      <div class="table-wrap" role="region" aria-label="二回蒸留と生成物">
         <table>
-            <thead>
-                <tr>
-                    <th>分類</th>
-                    <th>英語名</th>
-                    <th>特徴</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>**ヘッド**</td>
-                    <td>**Head** (Foreshots)</td>
-                    <td>最初に出てくる部分。刺激臭・不純物が強いため、原酒には使いません。</td>
-                </tr>
-                <tr>
-                    <td>**ミドルカット**</td>
-                    <td>**Middle Cut** (Heart Cut)</td>
-                    <td>中央部分。最もクリアで芳醇な、<strong>ウイスキーの原酒</strong>となる部分です。</td>
-                </tr>
-                <tr>
-                    <td>**テール**</td>
-                    <td>**Tail** (Feints)</td>
-                    <td>最後に出てくる部分。重く油分が多く、雑味を含むため原酒には使いません。</td>
-                </tr>
-            </tbody>
+          <thead>
+            <tr>
+              <th>段階</th>
+              <th>蒸留器</th>
+              <th>生成物（目安）</th>
+              <th>意味</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>初留</td>
+              <td>Wash Still</td>
+              <td>ローワイン（約20–30%）</td>
+              <td>ウォッシュを粗く濃縮する。</td>
+            </tr>
+            <tr>
+              <td>再留</td>
+              <td>Spirit Still</td>
+              <td>ニューポット（採取部位）</td>
+              <td>ヘッド／ミドル／テールに分け、品質帯を選ぶ。</td>
+            </tr>
+          </tbody>
         </table>
-    </div>
+      </div>
 
-    <p>採取された透明な高アルコール度の液体を<strong>ニューポット（New Pot）</strong>と呼びます。</p>
-</div>
+      <div class="note"><strong>ポイント：</strong>蒸留は“精製”ではなく<strong>選別</strong>。カットの位置とスチル形状が個性を決定する。</div>
+    </section>
 
-<div class="step">
-    <h2>5. 🌳 熟成（Maturation: マチュレーション）</h2>
-    <p>ウイスキーの風味と色を形作る、最も時間の長い工程です。</p>
-    <ul>
-      <li><strong>樽（Cask）</strong>: ニューポットをオーク材の樽に詰め、<strong>熟成庫（Warehouse）</strong>で寝かせます。</li>
-        <li><strong>熟成の影響</strong>: 樽材からバニラやスパイス、濃厚なフルーツの香味が抽出され、風味はまろやかになります。</li>
-        <li><strong>天使の分け前</strong>: 熟成中に蒸発して失われる原酒は<strong>エンジェルズ・シェア（Angel's Share）</strong>と呼ばれます。</li>
-    </ul>
-</div>
+    <!-- 5 -->
+    <section class="step" id="s5">
+      <h2>5. 貯蔵（Storage）<span class="badge">状態の管理</span></h2>
+      <div class="meta">
+        <div class="row"><div class="k">定義</div><div class="v">樽に入った原酒を倉庫で保管・管理している<strong>状態</strong>そのもの。</div></div>
+        <div class="row"><div class="k">対象</div><div class="v">熟成（化学変化）を支える環境要素：温湿度・倉庫構造・樽配置など。</div></div>
+      </div>
+      <ul>
+        <li>倉庫の代表例：<strong>ダンネージ</strong>／<strong>ラック</strong></li>
+        <li>換気・温度変動・樽の置き位置が、蒸発・酸化の進行に影響。</li>
+      </ul>
+      <div class="note"><strong>重要：</strong>「貯蔵＝状態」「熟成＝変化」。同じ言葉として扱わないと説明が一気に分かりやすくなる。</div>
 
-</div><!-- /container -->
+      <div class="table-wrap" role="region" aria-label="貯蔵庫タイプと熟成への影響">
+        <table>
+          <thead>
+            <tr>
+              <th>貯蔵庫タイプ</th>
+              <th>構造・樽の置き方</th>
+              <th>温湿度特性</th>
+              <th>熟成への影響</th>
+              <th>主な地域・用途</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>ダンネージ式</strong><br/>Dunnage Warehouse</td>
+              <td>床に輪木（木製レール）を敷き、樽を横倒しで2～4段積み</td>
+              <td>低温・高湿で変化が緩やか</td>
+              <td>蒸発が穏やか。長期熟成向きで、丸み・一体感が出やすい</td>
+              <td>スコットランド伝統蒸留所</td>
+            </tr>
+            <tr>
+              <td><strong>ラック式</strong><br/>Rack Warehouse</td>
+              <td>金属ラックに樽を横倒しで多段積み</td>
+              <td>上下で温度差が大きい</td>
+              <td>上段は熟成が進みやすく、樽位置による個体差が出やすい</td>
+              <td>スコットランド／世界各国</td>
+            </tr>
+            <tr>
+              <td><strong>パラダイス式</strong><br/>Paradise Warehouse</td>
+              <td>パレット上に樽を縦置きで積層</td>
+              <td>比較的乾燥・温度変動あり</td>
+              <td>熟成スピードが速く、樽由来成分が前に出やすい</td>
+              <td>カナダ、アイルランド</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
+      <div class="note">
+        <strong>整理：</strong>同じ原酒でも「どの倉庫・どの段で眠るか」によって、熟成速度・香味の方向性が変わる。
+        これは<strong>貯蔵（環境）</strong>と<strong>熟成（変化）</strong>が不可分であることを示している。
+      </div>
+
+    </section>
+
+    <!-- 6 -->
+    <section class="step" id="s6">
+      <h2>6. 熟成（Maturation）<span class="badge">時間×樽×環境</span></h2>
+      <div class="meta">
+        <div class="row"><div class="k">目的</div><div class="v">樽材由来成分の抽出、酸化、エステル化などにより、香味を統合し色とまろやかさを得る。</div></div>
+        <div class="row"><div class="k">現象</div><div class="v">抽出（バニラ/スパイス）・酸化（角が取れる）・蒸発（エンジェルズシェア）など。</div></div>
+      </div>
+      <div class="grid2">
+        <div class="box">
+          <h3>樽（Cask）</h3>
+          <p>オークが主。新樽／バーボン樽／シェリー樽などで香味の方向性が変わる。</p>
+        </div>
+        <div class="box">
+          <h3>年数表記</h3>
+          <p>一般に「最も若い原酒」の年数が表記の基準（※法規は地域で異なる）。</p>
+        </div>
+      </div>
+      <div class="note"><strong>ポイント：</strong>熟成は“足し算”だけでなく、不要要素の丸まり・統合も含む。</div>
+    </section>
+
+    <!-- 7 -->
+    <section class="step" id="s7">
+      <h2>7. ヴァッティング（Vatting / Marrying）<span class="badge">均質化と馴染み</span></h2>
+      <div class="meta">
+        <div class="row"><div class="k">目的</div><div class="v">複数樽を合わせて、香味を<strong>均質化</strong>し、狙った方向に整える。</div></div>
+        <div class="row"><div class="k">前提</div><div class="v">同一蒸留所内（シングルモルト）で行うことが多い。</div></div>
+      </div>
+      <ul>
+        <li>樽違い（バーボン／シェリー等）・熟成年違いの原酒を配合。</li>
+        <li>ヴァット（大容器）で一定期間寝かせ、味を“馴染ませる”。</li>
+      </ul>
+      <div class="note"><strong>ポイント：</strong>「混ぜる」より「馴染ませる」。シングルモルトでも重要な最終設計工程。</div>
+    </section>
+
+    <!-- 8 -->
+    <section class="step" id="s8">
+      <h2>8. ブレンデッド（Blending）<span class="badge">設計された味</span></h2>
+      <div class="meta">
+        <div class="row"><div class="k">目的</div><div class="v">異なる蒸留所／酒質（モルト・グレーン）を組み合わせ、狙いの味を再現性高く作る。</div></div>
+        <div class="row"><div class="k">分類</div><div class="v"><strong>ブレンデッド</strong>（モルト＋グレーン）／<strong>ブレンデッドモルト</strong>（複数モルトのみ）など。</div></div>
+      </div>
+      <ul>
+        <li>ブレンダーが香味を設計し、ロット差を調整。</li>
+        <li>“飲みやすさ”と“個性”の両立を作りやすい。</li>
+      </ul>
+      <div class="note"><strong>ポイント：</strong>ブレンデッドは「妥協」ではなく、再現性と設計自由度を武器にした製法。</div>
+    </section>
+
+    <!-- 9 -->
+    <section class="step" id="s9">
+      <h2>9. 瓶詰め（Bottling）<span class="badge">製品化の最終ライン</span></h2>
+      <div class="meta">
+        <div class="row"><div class="k">目的</div><div class="v">熟成後の原酒を製品仕様に整え、安定した品質で市場に届ける。</div></div>
+        <div class="row"><div class="k">範囲</div><div class="v">払い出し →（必要に応じて）冷却・濾過 → 加水 → 瓶詰め → ラベリング → 梱包・出荷</div></div>
+      </div>
+
+      <div class="table-wrap" role="region" aria-label="瓶詰め工程（代表例）">
+        <table>
+          <thead>
+            <tr>
+              <th>工程</th>
+              <th>英語</th>
+              <th>何をするか</th>
+              <th>品質への影響・注意点</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>払い出し</strong></td>
+              <td>Cask Dumping / Vat to Tank</td>
+              <td>樽（またはヴァット）から原酒をタンクに移し、ロットとしてまとめる。</td>
+              <td>ロット差の均質化の要。沈殿物や樽片の混入を管理。</td>
+            </tr>
+            <tr>
+              <td><strong>冷却</strong></td>
+              <td>Chill Down</td>
+              <td>低温にして、脂肪酸エステル等の析出を促す（必要な場合）。</td>
+              <td>冷却濾過とセット運用が多い。香味の“厚み”に影響する場合がある。</td>
+            </tr>
+            <tr>
+              <td><strong>濾過</strong></td>
+              <td>Filtration</td>
+              <td>濁り要因（析出物・微粒子）を除去。<strong>ノンチル</strong>の場合は最小限または無濾過。</td>
+              <td>見た目の安定性と引き換えに、テクスチャーや香りの保持とトレードオフが起こり得る。</td>
+            </tr>
+            <tr>
+              <td><strong>加水</strong></td>
+              <td>Reduction / Dilution</td>
+              <td>狙いの度数（例：40%/43%/46%/CS）に調整。水は規格管理されたものを使用。</td>
+              <td>香りの立ち方が変わる。段階加水・馴染ませ期間を取るケースもある。</td>
+            </tr>
+            <tr>
+              <td><strong>瓶詰め</strong></td>
+              <td>Bottling</td>
+              <td>充填、打栓（またはコルク）、液面・重量検査。</td>
+              <td>酸素混入・衛生管理・充填精度が品質とクレーム率に直結。</td>
+            </tr>
+            <tr>
+              <td><strong>ラベリング</strong></td>
+              <td>Labeling</td>
+              <td>ラベル貼付、ロット印字、法定表示の確認（原産地・度数・容量等）。</td>
+              <td>誤表示は重大リスク。バッチ番号は追跡性（トレーサビリティ）の要。</td>
+            </tr>
+            <tr>
+              <td><strong>梱包・出荷</strong></td>
+              <td>Packing / Shipping</td>
+              <td>箱詰め、検品、保管、出荷。</td>
+              <td>温度管理や光（直射日光）対策で品質保持。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <strong>Amber Palette向け整理：</strong>「瓶詰め」は単なる充填ではなく、<strong>仕様化（Spec化）</strong>と<strong>追跡性</strong>の工程。
+        “同じレシピでも、瓶詰め設計で体験が変わる”という視点を持つと理解が早い。
+      </div>
+
+    </section>
+
+    <footer>
+      <p class="muted">メモ：このページはスマホでの閲覧を前提に、横スクロールが必要な表はスクロール可能にしています。</p>
+    </footer>
+  </div>
 </body>
 </html>
