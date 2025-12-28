@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-  <title>ウイスキー製造工程（詳細版）</title>
+  <title>Whisky Process — 琥珀が誕生するまでの軌跡</title>
   <style>
     :root{
       --bg:#f4f4f4;
@@ -41,6 +41,25 @@
       z-index: 5;
       margin-bottom: 12px;
     }
+
+    /* 戻るボタンのスタイル */
+    .back-button {
+      display: inline-block;
+      text-decoration: none;
+      color: #fff;
+      font-size: 0.82rem;
+      border: 1px solid rgba(255,255,255,0.4);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+      background: rgba(255,255,255,0.1);
+      transition: all 0.3s ease;
+    }
+    .back-button:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateX(-3px);
+    }
+
     header h1{
       font-size: 1.25rem;
       margin: 0 0 6px 0;
@@ -199,7 +218,8 @@
 <body>
   <div class="container">
     <header>
-      <h1>🥃 ウイスキー製造工程</h1>
+      <a href="https://amber-palette-hub.vercel.app/" class="back-button">← Amber Palette Hub</a>
+      <h1>Whisky Process — 琥珀が誕生するまでの軌跡</h1>
             <nav class="toc" aria-label="目次">
         <a href="#s1">1 精麦</a>
         <a href="#s2">2 糖化</a>
@@ -213,7 +233,6 @@
       </nav>
     </header>
 
-    <!-- 1 -->
     <section class="step" id="s1">
       <h2>1. 精麦（Malting）<span class="badge">酵素を“準備”する</span></h2>
       <div class="meta">
@@ -269,7 +288,6 @@
 
     </section>
 
-    <!-- 2 -->
     <section class="step" id="s2">
       <h2>2. 糖化（Mashing）<span class="badge">デンプン→糖</span></h2>
       <div class="meta">
@@ -324,7 +342,6 @@
       <div class="note"><strong>ポイント：</strong>糖化は“化学工程”。温度・攪拌・回数の設計で酒質の骨格が変わる。</div>
     </section>
 
-    <!-- 3 -->
     <section class="step" id="s3">
       <h2>3. 発酵（Fermentation）<span class="badge">香りの母体</span></h2>
       <div class="meta">
@@ -338,7 +355,6 @@
       <div class="note"><strong>ポイント：</strong>蒸留前に、香味の“素材”がどれだけできているかが品質の上限を決める。</div>
     </section>
 
-    <!-- 4 -->
     <section class="step" id="s4">
       <h2>4. 蒸留（Distillation）<span class="badge">選別（カット）</span></h2>
       <div class="meta">
@@ -376,7 +392,6 @@
       <div class="note"><strong>ポイント：</strong>蒸留は“精製”ではなく<strong>選別</strong>。カットの位置とスチル形状が個性を決定する。</div>
     </section>
 
-    <!-- 5 -->
     <section class="step" id="s5">
       <h2>5. 貯蔵（Storage）<span class="badge">状態の管理</span></h2>
       <div class="meta">
@@ -433,7 +448,6 @@
 
     </section>
 
-    <!-- 6 -->
     <section class="step" id="s6">
       <h2>6. 熟成（Maturation）<span class="badge">時間×樽×環境</span></h2>
       <div class="meta">
@@ -453,7 +467,6 @@
       <div class="note"><strong>ポイント：</strong>熟成は“足し算”だけでなく、不要要素の丸まり・統合も含む。</div>
     </section>
 
-    <!-- 7 -->
     <section class="step" id="s7">
       <h2>7. ヴァッティング（Vatting / Marrying）<span class="badge">均質化と馴染み</span></h2>
       <div class="meta">
@@ -467,7 +480,6 @@
       <div class="note"><strong>ポイント：</strong>「混ぜる」より「馴染ませる」。シングルモルトでも重要な最終設計工程。</div>
     </section>
 
-    <!-- 8 -->
     <section class="step" id="s8">
       <h2>8. ブレンデッド（Blending）<span class="badge">設計された味</span></h2>
       <div class="meta">
@@ -481,7 +493,6 @@
       <div class="note"><strong>ポイント：</strong>ブレンデッドは「妥協」ではなく、再現性と設計自由度を武器にした製法。</div>
     </section>
 
-    <!-- 9 -->
     <section class="step" id="s9">
       <h2>9. 瓶詰め（Bottling）<span class="badge">製品化の最終ライン</span></h2>
       <div class="meta">
